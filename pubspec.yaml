@@ -16,7 +16,7 @@ dependencies:
     sdk: flutter
 
 
-  # Provide Cupertino Icon
+  # Provide iOS Cupertino style icons.
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -26,8 +26,22 @@ dev_dependencies:
   # Provide a set of recommended lints to encourage good coding practices.
   flutter_lints: ^2.0.0
 
+  # Provide a script to update all of the app platform logo
+  flutter_launcher_icons: ^0.10.0
+
+# Terminal Run: flutter pub run flutter_launcher_icons:main
+flutter_icons:
+  ios: true
+  android: true
+  image_path: asset/image/app-logo.png
+  remove_alpha_ios: true
+
 # The following section is specific to Flutter packages.
 flutter:
 
-  # Provide Material Icon
+  # Provide Android Material style icons.
   uses-material-design: true
+
+  # Declare Multimedia Resources
+  assets:
+    - asset/image/
