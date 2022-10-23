@@ -5,21 +5,21 @@ import '../../../component/input/text_input_component.dart';
 import '../../../component/template/screen_template_component.dart';
 import '../../../component/view/image_view_component.dart';
 import '../../../controller/app_controller.dart';
-import '../../controller/entry/register_entry_controller_route.dart';
+import '../../controller/entry/authenticate_entry_controller_route.dart';
 
-class RegisterEntryScreenRoute extends StatefulWidget {
-  final RegisterEntryControllerRoute controller;
+class AuthenticateEntryScreenRoute extends StatefulWidget {
+  final AuthenticateEntryControllerRoute controller;
 
-  const RegisterEntryScreenRoute({
+  const AuthenticateEntryScreenRoute({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<RegisterEntryScreenRoute> createState() => _RegisterEntryScreenRouteState();
+  State<AuthenticateEntryScreenRoute> createState() => _AuthenticateEntryScreenRouteState();
 }
 
-class _RegisterEntryScreenRouteState extends State<RegisterEntryScreenRoute> {
+class _AuthenticateEntryScreenRouteState extends State<AuthenticateEntryScreenRoute> {
   @override
   Widget build(BuildContext context) {
     return ScreenTemplateComponent.sheet(
@@ -41,7 +41,7 @@ class _RegisterEntryScreenRouteState extends State<RegisterEntryScreenRoute> {
                 height: 24,
               ),
               const Text(
-                'Sign Up',
+                'Sign In',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -49,44 +49,23 @@ class _RegisterEntryScreenRouteState extends State<RegisterEntryScreenRoute> {
                 ),
               ),
               const SizedBox(
-                height: 32,
+                height: 12,
               ),
-              const Text('Organization'),
-              TextInputComponent(
-                label: 'Name',
-                controller: widget.controller.organizationNameInputController,
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              const Text('User'),
               TextInputComponent(
                 label: 'ID',
-                controller: widget.controller.userIdInputController,
-              ),
-              TextInputComponent(
-                label: 'Name',
-                controller: widget.controller.userNameInputController,
-              ),
-              TextInputComponent(
-                label: 'Email',
-                controller: widget.controller.userEmailIdInputController,
+                controller: widget.controller.idInputController,
               ),
               TextInputComponent.secure(
                 label: 'Password',
-                controller: widget.controller.userPasswordInputController,
-              ),
-              TextInputComponent.secure(
-                label: 'Confirm Password',
-                controller: widget.controller.userPasswordConfirmationInputController,
+                controller: widget.controller.passwordInputController,
               ),
               const SizedBox(
                 height: 24,
               ),
               SubmitButtonComponent(
-                title: 'Sign Up',
+                title: 'Sign In',
                 onClicked: () {
-                  widget.controller.createAccount(this);
+                  widget.controller.authenticateAccount(this);
                 },
               ),
             ],

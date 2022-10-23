@@ -39,7 +39,7 @@ class _LandingEntryScreenRouteState extends State<LandingEntryScreenRoute> {
               height: 24,
             ),
             const Text(
-              'Welcome to Flutter Template',
+              'Flutter Template',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../service/navigator_service.dart';
 import '../../screen/entry/landing_entry_screen_route.dart';
+import 'authenticate_entry_controller_route.dart';
 import 'register_entry_controller_route.dart';
 
 class LandingEntryControllerRoute {
@@ -17,7 +18,7 @@ class LandingEntryControllerRoute {
   const LandingEntryControllerRoute._();
 
   void signIn(final State state) async {
-
+    AuthenticateEntryControllerRoute.navigate(state.context);
   }
 
   void signUp(final State state) async {
