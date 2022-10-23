@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../../../component/button/submit_button_component.dart';
 import '../../../component/template/screen_template_component.dart';
 import '../../../component/view/image_view_component.dart';
 import '../../../controller/app_controller.dart';
-import '../../controller/entry/splash_entry_controller_route.dart';
+import '../../controller/entry/landing_entry_controller_route.dart';
 
-class SplashEntryScreenRoute extends StatefulWidget {
-  final SplashEntryControllerRoute controller;
+class LandingEntryScreenRoute extends StatefulWidget {
+  final LandingEntryControllerRoute controller;
 
-  const SplashEntryScreenRoute({
+  const LandingEntryScreenRoute({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   @override
-  State<SplashEntryScreenRoute> createState() => _SplashEntryScreenRouteState();
+  State<LandingEntryScreenRoute> createState() => _LandingEntryScreenRouteState();
 }
 
-class _SplashEntryScreenRouteState extends State<SplashEntryScreenRoute> {
-  @override
-  void initState() {
-    widget.controller.initialise(this);
-    super.initState();
-  }
-
+class _LandingEntryScreenRouteState extends State<LandingEntryScreenRoute> {
   @override
   Widget build(BuildContext context) {
     return ScreenTemplateComponent.sheet(
-      layout: Center(
+      layout: Padding(
+        padding: const EdgeInsets.all(24),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
               child: ImageViewComponent.asset(
@@ -42,26 +39,41 @@ class _SplashEntryScreenRouteState extends State<SplashEntryScreenRoute> {
               height: 24,
             ),
             const Text(
-              'Flutter Template',
+              'Welcome to Flutter Template',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(
               height: 12,
             ),
             const Text(
-              'Initializing...',
+              'The goals of this application is to develop a template that ensure consistency and best coding practices for future flutter application.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             const SizedBox(
               height: 24,
             ),
-            const CircularProgressIndicator(),
+            SubmitButtonComponent(
+              title: 'Sign In',
+              onClicked: () {
+                widget.controller.signIn(this);
+              },
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            SubmitButtonComponent.secondary(
+              title: 'Sign Up',
+              onClicked: () {
+                widget.controller.signUp(this);
+              },
+            ),
           ],
         ),
       ),
