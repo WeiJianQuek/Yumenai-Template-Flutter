@@ -20,6 +20,8 @@ class AppController extends ChangeNotifier {
       : _themeMode = ThemeMode.light,
         _image = const ImageResourceData.light();
 
+  ThemeMode get themeMode => _themeMode;
+
   ImageResourceData get image => _image;
 
   bool isBrightnessDark(final BuildContext context) {
@@ -37,6 +39,10 @@ class AppController extends ChangeNotifier {
   void updateTheme(final BuildContext context, final ThemeMode themeMode) {
     _themeMode = themeMode;
 
+    updateBrightness(context);
+  }
+
+  void updateBrightness(final BuildContext context) {
     if (isBrightnessDark(context)) {
       _image = const ImageResourceData.dark();
     } else {

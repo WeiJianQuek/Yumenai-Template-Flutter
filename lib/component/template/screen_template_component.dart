@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../controller/app_controller.dart';
 
 enum ScreenTemplateStyle {
   sheet,
@@ -54,6 +57,14 @@ class ScreenTemplateComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _ScreenTemplateModel model;
+    final SystemUiOverlayStyle systemUiOverlayStyle;
+
+    if (AppController.of(context).isBrightnessDark(context)) {
+      systemUiOverlayStyle = SystemUiOverlayStyle.light;
+    } else {
+
+      systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+    }
 
     switch(style) {
       case ScreenTemplateStyle.sheet:
@@ -78,8 +89,14 @@ class ScreenTemplateComponent extends StatelessWidget {
         bottom: navigatorTop,
         leading: actionItemLeft,
         actions: actionListRight,
+        systemOverlayStyle: systemUiOverlayStyle,
       ),
-      body: layout,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: layout,
+      ),
       extendBodyBehindAppBar: model.enableOverlapAppBar,
       drawer: navigatorLeft,
       endDrawer: navigatorRight,

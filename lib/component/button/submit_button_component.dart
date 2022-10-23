@@ -42,6 +42,8 @@ class SubmitButtonComponent extends StatelessWidget {
         return ElevatedButton(
           onPressed: onClicked,
           style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             minimumSize: _minimumSize,
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
