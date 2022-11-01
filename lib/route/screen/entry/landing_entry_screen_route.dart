@@ -30,7 +30,7 @@ class _LandingEntryScreenRouteState extends State<LandingEntryScreenRoute> {
           children: [
             Center(
               child: ImageViewComponent.asset(
-                path: AppController.of(context).image.app.splash,
+                path: AppController.of(context).image.appSplash,
                 width: 200,
                 height: 200,
               ),

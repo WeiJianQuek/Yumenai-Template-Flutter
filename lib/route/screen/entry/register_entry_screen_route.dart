@@ -32,7 +32,7 @@ class _RegisterEntryScreenRouteState extends State<RegisterEntryScreenRoute> {
             children: [
               Center(
                 child: ImageViewComponent.asset(
-                  path: AppController.of(context).image.app.splash,
+                  path: AppController.of(context).image.appSplash,
                   width: 150,
                   height: 150,
                 ),

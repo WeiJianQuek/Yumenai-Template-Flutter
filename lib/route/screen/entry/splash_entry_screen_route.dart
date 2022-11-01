@@ -33,7 +33,7 @@ class _SplashEntryScreenRouteState extends State<SplashEntryScreenRoute> {
           children: [
             Center(
               child: ImageViewComponent.asset(
-                path: AppController.of(context).image.app.splash,
+                path: AppController.of(context).image.appSplash,
                 width: 200,
                 height: 200,
               ),
