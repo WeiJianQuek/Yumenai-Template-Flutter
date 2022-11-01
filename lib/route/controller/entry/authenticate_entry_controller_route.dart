@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../service/navigator_service.dart';
 import '../../screen/entry/authenticate_entry_screen_route.dart';
+import '../dashboard_controller_route.dart';
 
 class AuthenticateEntryControllerRoute {
   static void navigate(final BuildContext context) {
@@ -19,6 +20,6 @@ class AuthenticateEntryControllerRoute {
   AuthenticateEntryControllerRoute._();
 
   void authenticateAccount(final State state) async {
-
+    DashboardControllerRoute.navigate(state.context);
   }
 }

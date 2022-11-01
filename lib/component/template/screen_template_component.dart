@@ -107,28 +107,24 @@ class ScreenTemplateComponent extends StatelessWidget {
   Widget? infoHeader() {
     final infoWidgetList = <Widget> [];
 
-    if (infoTitle?.isNotEmpty ?? false) {
-      infoWidgetList.add(
-        Text(
-          infoTitle ?? '',
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
+    if (infoSubtitle?.isNotEmpty ?? false) {
+      infoWidgetList.add(Text(
+        infoSubtitle ?? '',
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
         ),
-      );
+      ));
     }
 
-    if (infoSubtitle?.isNotEmpty ?? false) {
-      infoWidgetList.add(
-        Text(
-          infoSubtitle ?? '',
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-          ),
+    if (infoTitle?.isNotEmpty ?? false) {
+      infoWidgetList.insert(0, Text(
+        infoTitle ?? '',
+        style: TextStyle(
+          fontSize: infoWidgetList.isEmpty ? 24 : 20,
+          fontWeight: FontWeight.normal,
         ),
-      );
+      ));
     }
 
     final Widget? textWidget;
