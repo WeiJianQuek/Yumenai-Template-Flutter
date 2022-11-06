@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../service/navigator_service.dart';
+import '../../../utility/navigator_utility.dart';
 import '../../screen/entry/splash_entry_screen_route.dart';
 import 'landing_entry_controller_route.dart';
 
@@ -12,7 +12,7 @@ class SplashEntryControllerRoute {
   }
 
   static void navigate(final BuildContext context) {
-    NavigatorService.screen.nextSession(
+    NavigatorUtility.screen.nextSession(
       context,
       screen: screen(),
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NavigatorService {
+class NavigatorUtility {
   static const dialog = _DialogNavigator._();
 
   static const link = _LinkNavigator._();
 
   static const screen = _ScreenNavigator._();
 
-  const NavigatorService._();
+  const NavigatorUtility._();
 }
 
 class _DialogNavigator {

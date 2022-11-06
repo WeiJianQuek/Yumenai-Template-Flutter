@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../service/navigator_service.dart';
+import '../../utility/navigator_utility.dart';
 import '../screen/dashboard_screen_route.dart';
-import 'entry/splash_entry_controller_route.dart';
+import 'dashboard/setting_dashboard_controller_route.dart';
 
 class DashboardControllerRoute {
   static void navigate(final BuildContext context) {
-    NavigatorService.screen.nextSession(
+    NavigatorUtility.screen.nextSession(
       context,
       screen: DashboardScreenRoute(
         controller: DashboardControllerRoute._(),
@@ -16,7 +16,7 @@ class DashboardControllerRoute {
 
   DashboardControllerRoute._();
 
-  void signOut(final BuildContext context) {
-    SplashEntryControllerRoute.navigate(context);
+  void routeSettings(final BuildContext context) {
+    SettingDashboardControllerRoute.navigate(context);
   }
 }

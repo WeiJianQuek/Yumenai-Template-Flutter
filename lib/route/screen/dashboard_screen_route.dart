@@ -18,9 +18,9 @@ class DashboardScreenRoute extends StatelessWidget {
       actionListRight: [
         IconButton(
           onPressed: () {
-            controller.signOut(context);
+            controller.routeSettings(context);
           },
-          icon: const Icon(Icons.exit_to_app),
+          icon: const Icon(Icons.settings),
         ),
       ],
     );

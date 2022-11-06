@@ -5,21 +5,24 @@ import '../data/resource/color_resource_data.dart';
 import '../data/resource/image_resource_data.dart';
 
 class AppController extends ChangeNotifier {
-  static AppController of(final BuildContext context, [
-    final bool enableListener = true,
-  ]) {
+  static AppController of(final BuildContext context) {
     return Provider.of<AppController>(
       context,
-      listen: enableListener,
+      listen: false,
     );
   }
 
-  static void updateTheme(final BuildContext context, final ThemeMode themeMode) {
-    of(context, false)._updateTheme(context, themeMode);
+  static AppControllerNotify notify(final BuildContext context) {
+    return AppControllerNotify(
+      Provider.of<AppController>(
+        context,
+        listen: false,
+      ),
+    );
   }
 
-  static void updateBrightness(final BuildContext context) {
-    of(context, false)._updateBrightness(context);
+  static AppController listen(final BuildContext context) {
+    return Provider.of<AppController>(context);
   }
 
   ThemeMode _themeMode;
@@ -47,7 +50,7 @@ class AppController extends ChangeNotifier {
 
   bool isBrightnessDark(final BuildContext context) {
     if (_themeMode == ThemeMode.system) {
-      return MediaQuery.of(context).platformBrightness == Brightness.dark;
+      return WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
     } else {
       return _themeMode == ThemeMode.dark;
     }
@@ -60,10 +63,10 @@ class AppController extends ChangeNotifier {
   void _updateTheme(final BuildContext context, final ThemeMode themeMode) {
     _themeMode = themeMode;
 
-    _updateBrightness(context);
+    _synchronizeBrightness(context);
   }
 
-  void _updateBrightness(final BuildContext context) {
+  void _synchronizeBrightness(final BuildContext context) {
     if (isBrightnessDark(context)) {
       _color = const ColorResourceData.dark();
       _image = const ImageResourceData.dark();
@@ -73,5 +76,19 @@ class AppController extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+}
+
+class AppControllerNotify {
+  final AppController _controller;
+
+  const AppControllerNotify(this._controller);
+
+  void updateTheme(final BuildContext context, final ThemeMode themeMode) {
+    _controller._updateTheme(context, themeMode);
+  }
+
+  void synchronizeBrightness(final BuildContext context) {
+    _controller._synchronizeBrightness(context);
   }
 }

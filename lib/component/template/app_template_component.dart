@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 import '../../controller/app_controller.dart';
 import '../../data/resource/color_resource_data.dart';
@@ -33,7 +32,7 @@ class _AppTemplateComponentState extends State<AppTemplateComponent> with Widget
   @override
   void didChangePlatformBrightness() {
     if (mounted) {
-      AppController.updateBrightness(context);
+      AppController.notify(context).synchronizeBrightness(context);
     }
 
     super.didChangePlatformBrightness();
@@ -41,77 +40,66 @@ class _AppTemplateComponentState extends State<AppTemplateComponent> with Widget
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) {
-            return AppController();
-          },
-        ),
-      ],
-      builder: (context, child) {
-        const darkColorResource = ColorResourceData.dark();
-        const lightColorResource = ColorResourceData.light();
+    const darkColorResource = ColorResourceData.dark();
+    const lightColorResource = ColorResourceData.light();
 
-        final SystemUiOverlayStyle systemUiOverlayStyle;
+    final SystemUiOverlayStyle systemUiOverlayStyle;
 
-        if (AppController.of(context).isBrightnessDark(context)) {
-          systemUiOverlayStyle = SystemUiOverlayStyle.dark.copyWith(
-            systemNavigationBarColor: darkColorResource.system,
-            systemNavigationBarDividerColor: darkColorResource.system,
-            statusBarColor: darkColorResource.system,
-          );
-        } else {
-          systemUiOverlayStyle = SystemUiOverlayStyle.light.copyWith(
-            systemNavigationBarColor: lightColorResource.system,
-            systemNavigationBarDividerColor: lightColorResource.system,
-            statusBarColor: lightColorResource.system,
-          );
-        }
+    if (AppController.listen(context).isBrightnessDark(context)) {
+      systemUiOverlayStyle = SystemUiOverlayStyle.dark.copyWith(
+        systemNavigationBarColor: darkColorResource.system,
+        systemNavigationBarDividerColor: darkColorResource.system,
+        statusBarColor: darkColorResource.system,
+      );
+    } else {
+      systemUiOverlayStyle = SystemUiOverlayStyle.light.copyWith(
+        systemNavigationBarColor: lightColorResource.system,
+        systemNavigationBarDividerColor: lightColorResource.system,
+        statusBarColor: lightColorResource.system,
+      );
+    }
 
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: systemUiOverlayStyle,
-          child: MaterialApp(
-            title: 'Template',
-            home: widget.layout,
-            themeMode: AppController.of(context).themeMode,
-            theme: ThemeData(
-              useMaterial3: true,
-              brightness: Brightness.light,
-              colorScheme: ColorScheme(
-                brightness: Brightness.light,
-                primary: lightColorResource.primary,
-                onPrimary: lightColorResource.onPrimary,
-                secondary: lightColorResource.secondary,
-                onSecondary: lightColorResource.onSecondary,
-                error: lightColorResource.error,
-                onError: lightColorResource.onError,
-                background: lightColorResource.background,
-                onBackground: lightColorResource.onBackground,
-                surface: lightColorResource.surface,
-                onSurface: lightColorResource.onSurface,
-              ),
-            ),
-            darkTheme: ThemeData.dark(
-              useMaterial3: true,
-            ).copyWith(
-              colorScheme: ColorScheme(
-                brightness: Brightness.dark,
-                primary: darkColorResource.primary,
-                onPrimary: darkColorResource.onPrimary,
-                secondary: darkColorResource.secondary,
-                onSecondary: darkColorResource.onSecondary,
-                error: darkColorResource.error,
-                onError: darkColorResource.onError,
-                background: darkColorResource.background,
-                onBackground: darkColorResource.onBackground,
-                surface: darkColorResource.surface,
-                onSurface: darkColorResource.onSurface,
-              ),
-            ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: systemUiOverlayStyle,
+      child: MaterialApp(
+        title: 'Management',
+        home: widget.layout,
+        themeMode: AppController.listen(context).themeMode,
+        theme: ThemeData(
+          useMaterial3: true,
+          brightness: Brightness.light,
+          colorScheme: ColorScheme(
+            brightness: Brightness.light,
+            primary: lightColorResource.primary,
+            onPrimary: lightColorResource.onPrimary,
+            secondary: lightColorResource.secondary,
+            onSecondary: lightColorResource.onSecondary,
+            error: lightColorResource.error,
+            onError: lightColorResource.onError,
+            background: lightColorResource.background,
+            onBackground: lightColorResource.onBackground,
+            surface: lightColorResource.surface,
+            onSurface: lightColorResource.onSurface,
           ),
-        );
-      },
+        ),
+        darkTheme: ThemeData.dark(
+          useMaterial3: true,
+        ).copyWith(
+          colorScheme: ColorScheme(
+            brightness: Brightness.dark,
+            primary: darkColorResource.primary,
+            onPrimary: darkColorResource.onPrimary,
+            secondary: darkColorResource.secondary,
+            onSecondary: darkColorResource.onSecondary,
+            error: darkColorResource.error,
+            onError: darkColorResource.onError,
+            background: darkColorResource.background,
+            onBackground: darkColorResource.onBackground,
+            surface: darkColorResource.surface,
+            onSurface: darkColorResource.onSurface,
+          ),
+        ),
+      ),
     );
   }
 }

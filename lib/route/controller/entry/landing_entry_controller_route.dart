@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../service/navigator_service.dart';
+import '../../../utility/navigator_utility.dart';
 import '../../screen/entry/landing_entry_screen_route.dart';
 import 'authenticate_entry_controller_route.dart';
 import 'register_entry_controller_route.dart';
 
 class LandingEntryControllerRoute {
   static void navigate(final BuildContext context) {
-    NavigatorService.screen.nextSession(
+    NavigatorUtility.screen.nextSession(
       context,
       screen: const LandingEntryScreenRoute(
         controller: LandingEntryControllerRoute._(),
