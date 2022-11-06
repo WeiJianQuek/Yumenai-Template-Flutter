@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../component/template/screen_template_component.dart';
+import '../../../controller/app_controller.dart';
 import '../../controller/dashboard/setting_dashboard_controller_route.dart';
 
 class SettingDashboardScreenRoute extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SettingDashboardScreenRouteState extends State<SettingDashboardScreenRout
   @override
   Widget build(BuildContext context) {
     return ScreenTemplateComponent(
-      infoTitle: 'Settings',
+      infoTitle: AppController.of(context).text(context)?.routeTitleSettings,
       actionListRight: [
         IconButton(
           onPressed: () {
@@ -51,7 +52,7 @@ class _SettingDashboardScreenRouteState extends State<SettingDashboardScreenRout
               ),
             ),
             title: const Text('Theme'),
-            subtitle: Text(widget.controller.themeModeTitle(context)),
+            subtitle: Text(widget.controller.themeModeTitle(context) ?? ''),
             onTap: () {
               widget.controller.updateTheme(this);
             },
@@ -67,9 +68,9 @@ class _SettingDashboardScreenRouteState extends State<SettingDashboardScreenRout
               ),
             ),
             title: const Text('Language'),
-            subtitle: const Text('English'),
+            subtitle: Text(widget.controller.languageTitle(context)),
             onTap: () {
-
+              widget.controller.updateLanguage(this);
             },
           ),
         ],

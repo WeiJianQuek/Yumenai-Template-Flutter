@@ -4,6 +4,7 @@ import '../../../component/button/submit_button_component.dart';
 import '../../../component/template/screen_template_component.dart';
 import '../../../component/view/image_view_component.dart';
 import '../../../controller/app_controller.dart';
+import '../../../controller/service_controller.dart';
 import '../../controller/entry/landing_entry_controller_route.dart';
 
 class LandingEntryScreenRoute extends StatefulWidget {
@@ -38,10 +39,10 @@ class _LandingEntryScreenRouteState extends State<LandingEntryScreenRoute> {
             const SizedBox(
               height: 24,
             ),
-            const Text(
-              'Flutter Template',
+            Text(
+              ServiceController.of(context).app.name,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -49,10 +50,10 @@ class _LandingEntryScreenRouteState extends State<LandingEntryScreenRoute> {
             const SizedBox(
               height: 12,
             ),
-            const Text(
-              'The goals of this application is to develop a template that ensure consistency and best coding practices for future flutter application.',
+            Text(
+              AppController.of(context).text(context)?.appDescription ?? '',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),

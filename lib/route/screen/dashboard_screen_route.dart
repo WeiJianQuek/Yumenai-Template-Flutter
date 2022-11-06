@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../component/template/screen_template_component.dart';
+import '../../controller/app_controller.dart';
 import '../controller/dashboard_controller_route.dart';
 
 class DashboardScreenRoute extends StatelessWidget {
@@ -14,7 +15,7 @@ class DashboardScreenRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTemplateComponent(
-      infoTitle: 'Dashboard',
+      infoTitle: AppController.of(context).text(context)?.routeTitleDashboard ?? '',
       actionListRight: [
         IconButton(
           onPressed: () {

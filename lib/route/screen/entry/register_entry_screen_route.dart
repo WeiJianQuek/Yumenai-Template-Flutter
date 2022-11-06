@@ -68,7 +68,7 @@ class _RegisterEntryScreenRouteState extends State<RegisterEntryScreenRoute> {
                 label: 'Name',
                 controller: widget.controller.userNameInputController,
               ),
-              TextInputComponent(
+              TextInputComponent.email(
                 label: 'Email',
                 controller: widget.controller.userEmailIdInputController,
               ),

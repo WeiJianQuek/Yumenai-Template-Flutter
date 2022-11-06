@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../controller/app_controller.dart';
 import '../../data/resource/color_resource_data.dart';
+import '../../data/resource/language_resource_data.dart';
 
 class AppTemplateComponent extends StatefulWidget {
   final Widget layout;
@@ -99,6 +100,9 @@ class _AppTemplateComponentState extends State<AppTemplateComponent> with Widget
             onSurface: darkColorResource.onSurface,
           ),
         ),
+        locale: AppController.listen(context).locale,
+        supportedLocales: LanguageResourceData.supportedLocaleList,
+        localizationsDelegates: LanguageResourceData.localizationDelegateList,
       ),
     );
   }

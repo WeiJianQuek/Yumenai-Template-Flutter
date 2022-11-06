@@ -16,7 +16,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) {
-            return AppController();
+            return AppController(context);
           },
         ),
         ChangeNotifierProvider(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../data/resource/color_resource_data.dart';
 import '../data/resource/image_resource_data.dart';
+import '../data/resource/language_resource_data.dart';
 
 class AppController extends ChangeNotifier {
   static AppController of(final BuildContext context) {
@@ -26,19 +28,26 @@ class AppController extends ChangeNotifier {
   }
 
   ThemeMode _themeMode;
+  Locale _locale;
+
   ColorResourceData _color;
   ImageResourceData _image;
 
-  AppController()
+  AppController(final BuildContext context)
       : _themeMode = ThemeMode.light,
+        _locale = LanguageResourceData.supportedLocaleList.first,
         _color = const ColorResourceData.light(),
         _image = const ImageResourceData.light();
 
   ThemeMode get themeMode => _themeMode;
 
+  Locale? get locale => _locale;
+
   ColorResourceData get color => _color;
 
   ImageResourceData get image => _image;
+
+  AppLocalizations? text(final BuildContext context) => AppLocalizations.of(context);
 
   Brightness getBrightness(final BuildContext context) {
     if (_themeMode == ThemeMode.system) {
@@ -66,6 +75,16 @@ class AppController extends ChangeNotifier {
     _synchronizeBrightness(context);
   }
 
+  void _updateLanguage(final BuildContext context, final String languageCode) {
+    for (final locale in LanguageResourceData.supportedLocaleList) {
+      if (locale.languageCode == languageCode) {
+        _locale = locale;
+        notifyListeners();
+        break;
+      }
+    }
+  }
+
   void _synchronizeBrightness(final BuildContext context) {
     if (isBrightnessDark(context)) {
       _color = const ColorResourceData.dark();
@@ -86,6 +105,10 @@ class AppControllerNotify {
 
   void updateTheme(final BuildContext context, final ThemeMode themeMode) {
     _controller._updateTheme(context, themeMode);
+  }
+
+  void updateLanguage(final BuildContext context, final String languageCode) {
+    _controller._updateLanguage(context, languageCode);
   }
 
   void synchronizeBrightness(final BuildContext context) {

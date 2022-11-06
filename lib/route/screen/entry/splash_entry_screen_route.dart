@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../component/template/screen_template_component.dart';
 import '../../../component/view/image_view_component.dart';
 import '../../../controller/app_controller.dart';
+import '../../../controller/service_controller.dart';
 import '../../controller/entry/splash_entry_controller_route.dart';
 
 class SplashEntryScreenRoute extends StatefulWidget {
@@ -41,10 +42,10 @@ class _SplashEntryScreenRouteState extends State<SplashEntryScreenRoute> {
             const SizedBox(
               height: 24,
             ),
-            const Text(
-              'Flutter Template',
+            Text(
+              ServiceController.of(context).app.name,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
               ),
             ),

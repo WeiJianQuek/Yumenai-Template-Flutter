@@ -39,7 +39,7 @@ class OptionDialogRoute {
           top: 16,
         ),
         positiveButton: DialogButtonComponent.positive(
-          title: 'Ok',
+          title: 'OK',
           onClicked: (context) {
             Navigator.pop(context);
           },
